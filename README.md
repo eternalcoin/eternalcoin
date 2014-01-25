@@ -1,3 +1,8 @@
-FooCoin (FOO)
+EternalCoin (ETC)
 
-Blah, blah, blah.
+Client Version
+
+
+1.1 (1/25/2014):
+-added checkpoints
+-added update check message

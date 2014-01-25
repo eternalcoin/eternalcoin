@@ -1,7 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'signverifymessagedialog.ui'
 **
-** Created by: Qt User Interface Compiler version 4.8.5
+** Created: Sat Jan 25 15:56:05 2014
+**      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/

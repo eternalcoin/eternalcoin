@@ -278,6 +278,12 @@ if (fdsa == asdf) {
 
 	}
 
+else if (buffer!=NULL) {
+
+QMessageBox::information(NULL, "EternalCoin Update Checker", "Update checker failed. Please check manually at http://eternalcoin.info");
+
+}
+
 else {
 
 QMessageBox::information(NULL, "EternalCoin Update Checker", "There is a new version of the client available. Please visit http://eternalcoin.info immediately.");
@@ -287,7 +293,7 @@ QMessageBox::information(NULL, "EternalCoin Update Checker", "There is a new ver
 
 //linux updater
 
-#elif(UNIX)
+#else
 
 
 #include <stdio.h>
@@ -329,22 +335,24 @@ dest.sin_port = htons(PORTNUM);                /* set destination port number */
 const std::string asdf = "Version 1.1";
 const std::string fdsa = buffer;
 
+
 if (fdsa == asdf) {
   QMessageBox::information(NULL, "EternalCoin Update Checker", "Your client is up to date.");
 
 	}
 
+else if (buffer!=NULL) {
 
-
-
-
-else {
-
-QMessageBox::information(NULL, "EternalCoin Update Checker", "There is an updated version of the client available. Please visit http://eternalcoin.info immediately.");
-
+QMessageBox::information(NULL, "EternalCoin Update Checker", "Update checker failed. Please check manually at http://eternalcoin.info");
 
 }
 
+else {
+
+QMessageBox::information(NULL, "EternalCoin Update Checker", "There is a new version of the client available. Please visit http://eternalcoin.info immediately.");
+
+
+}
 #endif
 
 
