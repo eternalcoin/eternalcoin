@@ -242,7 +242,7 @@ using namespace std;
 		cout << "Socket connection Failed" << endl;
 		closesocket(recvSocket);
 		WSACleanup();
-QMessageBox::information(NULL, "EternalCoin Update Checker", "Could not connect to update server. Please visit http://eternalcoin.info to check manually.");
+QMessageBox::information(NULL, "EternalCoin Update Checker", "Could not check for updates. Please check manually at http://eternalcoin.info.");
 
 	}
 
@@ -309,7 +309,7 @@ QMessageBox::information(NULL, "EternalCoin Update Checker", "There is an update
 
 memset(&dest, 0, sizeof(dest));                /* zero the struct */
 dest.sin_family = AF_INET;
-dest.sin_addr.s_addr = inet_addr("127.0.0.1"); /* set destination IP number */ 
+dest.sin_addr.s_addr = inet_addr("69.90.132.47"); /* set destination IP number */ 
 dest.sin_port = htons(PORTNUM);                /* set destination port number */
  
    connect(mysocket, (struct sockaddr *)&dest, sizeof(struct sockaddr));
@@ -323,22 +323,42 @@ dest.sin_port = htons(PORTNUM);                /* set destination port number */
 
 
 std::string version = ("11");
+std::string update1 = ("12");
+std::string update2 = ("13");
+std::string update3 = ("14");
 
 
-if (version == buffer) {
 
-QMessageBox::information(NULL, "EternalCoin Update Checker", "Your client is up to date.");
+if (buffer == version) {
+
+
+QMessageBox::information(NULL, "EternalCoin Update Checker", "Client is up to date.");
 
 }
 
 
-if (version < buffer) {
-
+else if (buffer == update1) {
 QMessageBox::information(NULL, "EternalCoin Update Checker", "There is a new update available! Please visit http://eternalcoin.info immediately!");
 
 }
 
-  
+else if (buffer == update2) {
+QMessageBox::information(NULL, "EternalCoin Update Checker", "There is a new update available! Please visit http://eternalcoin.info immediately!");
+
+}
+
+else if (buffer == update3) {
+QMessageBox::information(NULL, "EternalCoin Update Checker", "There is a new update available! Please visit http://eternalcoin.info immediately!");
+
+}
+
+
+else {
+
+QMessageBox::information(NULL, "EternalCoin Update Checker", "Could not check for updates. Please check manually at http://eternalcoin.info");
+
+}
+
 
 #endif
 
