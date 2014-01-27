@@ -188,15 +188,13 @@ int main(int argc, char *argv[])
 
 
 #if defined(WIN32)
-
-//#include "stdafx.h"
 #include <winsock2.h>
 #include <windows.h>
 #include <iostream>
-//#pragma comment(lib, "ws2_32.lib") 
+
 
 #define NO_FLAGS_SET 0
-#define PORT (u_short) 2343 //44966
+#define PORT (u_short) 49999
 #define MAXBUFLEN 256
 
 using namespace std;
@@ -214,8 +212,8 @@ using namespace std;
 	status = WSAStartup(MAKEWORD(1, 1), &Data);
 	if (status != 0)
 	{
+
 		cerr << "ERROR: WSAStartup unsuccessful" << endl;
-		return 0;
 	}
 
 	/* zero the sockaddr_in structure */
@@ -234,8 +232,6 @@ using namespace std;
 	if (recvSocket == INVALID_SOCKET)
 	{
 		cerr << "ERROR: socket unsuccessful" << endl;
-		system("pause");
-		return 0;
 	}
 
 
@@ -246,7 +242,8 @@ using namespace std;
 		cout << "Socket connection Failed" << endl;
 		closesocket(recvSocket);
 		WSACleanup();
-		return 0;
+QMessageBox::information(NULL, "EternalCoin Update Checker", "Could not connect to update server. Please visit http://eternalcoin.info to check manually.");
+
 	}
 
 	//send a request
@@ -255,6 +252,7 @@ using namespace std;
 	numrcv = recv(recvSocket, buffer, MAXBUFLEN, NO_FLAGS_SET);
 
 	if (numrcv == SOCKET_ERROR)
+
 	{
 		cerr << "ERROR: recvfrom unsuccessful" << endl;
 
@@ -264,32 +262,25 @@ using namespace std;
 		status = WSACleanup();
 		if (status == SOCKET_ERROR)
 			cerr << "ERROR: WSACleanup unsuccessful" << endl;
-		system("pause");
-		return(1);
-
 
 	}
 
-const std::string asdf = "Version 1.1";
-const std::string fdsa = buffer;
 
-if (fdsa == asdf) {
-  QMessageBox::information(NULL, "EternalCoin Update Checker", "Your client is up to date.");
 
-	}
+std::string version = ("11");
 
-else if (buffer!=NULL) {
-
-QMessageBox::information(NULL, "EternalCoin Update Checker", "Update checker failed. Please check manually at http://eternalcoin.info");
+if (version == buffer) {
+QMessageBox::information(NULL, "EternalCoin Update Checker", "Your client is up to date.");
 
 }
 
-else {
+if (version < buffer) {
 
-QMessageBox::information(NULL, "EternalCoin Update Checker", "There is a new version of the client available. Please visit http://eternalcoin.info immediately.");
-
+QMessageBox::information(NULL, "EternalCoin Update Checker", "There is an update available! Please visit http:///eternalcoin.info immediately!");
 
 }
+
+
 
 //linux updater
 
@@ -300,16 +291,17 @@ QMessageBox::information(NULL, "EternalCoin Update Checker", "There is a new ver
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <string>
 #include <arpa/inet.h>
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
  
 #define MAXRCVLEN 500
-#define PORTNUM 2343
+#define PORTNUM 49999
  
 
-   char buffer[MAXRCVLEN + 1]; /* +1 so we can add null terminator */
+   char buffer[MAXRCVLEN +1]; /* +1 so we can add null terminator */
    int len, mysocket;
    struct sockaddr_in dest; 
  
@@ -317,7 +309,7 @@ QMessageBox::information(NULL, "EternalCoin Update Checker", "There is a new ver
 
 memset(&dest, 0, sizeof(dest));                /* zero the struct */
 dest.sin_family = AF_INET;
-dest.sin_addr.s_addr = inet_addr("69.90.132.47"); /* set destination IP number */ 
+dest.sin_addr.s_addr = inet_addr("127.0.0.1"); /* set destination IP number */ 
 dest.sin_port = htons(PORTNUM);                /* set destination port number */
  
    connect(mysocket, (struct sockaddr *)&dest, sizeof(struct sockaddr));
@@ -325,34 +317,46 @@ dest.sin_port = htons(PORTNUM);                /* set destination port number */
    len = recv(mysocket, buffer, MAXRCVLEN, 0);
  
    /* We have to null terminate the received data ourselves */
-   buffer[len] = '\0';
+ buffer[len] = '\0';
  
-// printf("Received %s (%d bytes).\n", buffer, len);
- 
-  // close(mysocket);
+ //printf("Received %s (%d bytes).\n", buffer, len);
 
 
-const std::string asdf = "Version 1.1";
-const std::string fdsa = buffer;
+std::string version = ("11");
+std::string update1 = ("12");
+std::string update2 = ("13");
+std::string update3 = ("14");
 
 
-if (fdsa == asdf) {
-  QMessageBox::information(NULL, "EternalCoin Update Checker", "Your client is up to date.");
+if (version == buffer) {
 
-	}
-
-else if (buffer!=NULL) {
-
-QMessageBox::information(NULL, "EternalCoin Update Checker", "Update checker failed. Please check manually at http://eternalcoin.info");
+QMessageBox::information(NULL, "EternalCoin Update Checker", "Your client is up to date.");
 
 }
 
-else {
 
-QMessageBox::information(NULL, "EternalCoin Update Checker", "There is a new version of the client available. Please visit http://eternalcoin.info immediately.");
+if (update1 == buffer) {
 
+QMessageBox::information(NULL, "EternalCoin Update Checker", "There is an update available! Please visit http://eternalcoin.info immediately!");
+}
+
+
+if (update2 == buffer) {
+
+QMessageBox::information(NULL, "EternalCoin Update Checker", "There is an update available! Please visit http://eternalcoin.info immediately!");
 
 }
+
+
+if (update3 == buffer) {
+
+QMessageBox::information(NULL, "EternalCoin Update Checker", "There is an update available! Please visit http://eternalcoin.info immediately!");
+
+}
+
+
+  
+
 #endif
 
 
