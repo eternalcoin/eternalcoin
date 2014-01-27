@@ -323,9 +323,6 @@ dest.sin_port = htons(PORTNUM);                /* set destination port number */
 
 
 std::string version = ("11");
-std::string update1 = ("12");
-std::string update2 = ("13");
-std::string update3 = ("14");
 
 
 if (version == buffer) {
@@ -335,25 +332,11 @@ QMessageBox::information(NULL, "EternalCoin Update Checker", "Your client is up 
 }
 
 
-if (update1 == buffer) {
+if (version < buffer) {
 
-QMessageBox::information(NULL, "EternalCoin Update Checker", "There is an update available! Please visit http://eternalcoin.info immediately!");
-}
-
-
-if (update2 == buffer) {
-
-QMessageBox::information(NULL, "EternalCoin Update Checker", "There is an update available! Please visit http://eternalcoin.info immediately!");
+QMessageBox::information(NULL, "EternalCoin Update Checker", "There is a new update available! Please visit http://eternalcoin.info immediately!");
 
 }
-
-
-if (update3 == buffer) {
-
-QMessageBox::information(NULL, "EternalCoin Update Checker", "There is an update available! Please visit http://eternalcoin.info immediately!");
-
-}
-
 
   
 
